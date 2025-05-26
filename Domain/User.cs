@@ -6,9 +6,5 @@ public class User : IdentityUser
 {
     public string? DisplayName { get; set; }
 
-    public Guid? Token { get; set; }
-
-    public DateTime TokenValidationDateTime { get; set; }
-
-    public ICollection<UserTimetable> Timetable { get; set; } = [];
+    public ICollection<UserPerformance> Timetable { get; set; } = [];
 }
