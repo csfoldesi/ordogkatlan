@@ -1,4 +1,4 @@
-﻿using Application.Common.Interfaces;
+﻿using Application.Core.Interfaces;
 using Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
