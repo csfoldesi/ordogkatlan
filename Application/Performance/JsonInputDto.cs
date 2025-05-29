@@ -68,7 +68,7 @@ public class Centerpiece
     public required Village1 Village { get; set; }
     public required Stage Stage { get; set; }
     public required Time1 Time { get; set; }
-    public int Duration { get; set; }
+    public int? Duration { get; set; }
     public string? Description { get; set; }
     public string? Href { get; set; }
     public Label[] Labels { get; set; } = [];
