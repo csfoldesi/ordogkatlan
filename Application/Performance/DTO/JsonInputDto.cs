@@ -1,4 +1,4 @@
-﻿namespace Application.Performance.Json;
+﻿namespace Application.Performance.DTO;
 
 public class JsonInputRoot
 {

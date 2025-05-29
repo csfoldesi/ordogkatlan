@@ -4,8 +4,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Application.Core;
 using Application.Core.Interfaces;
-using Application.Performance.Json;
-using Domain;
+using Application.Performance.DTO;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

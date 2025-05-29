@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text.Json.Serialization;
 using API.Services;
 using Application.Core.Interfaces;
 
@@ -11,7 +12,13 @@ public static class ApplicationServiceExtensions
         IConfiguration configuration
     )
     {
-        services.AddControllers();
+        services
+            .AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.WriteIndented = true; // Optional: pretty print
+            });
         services.AddEndpointsApiExplorer();
         services.AddScoped<IUser, CurrentUser>();
         services.AddOpenApi();
