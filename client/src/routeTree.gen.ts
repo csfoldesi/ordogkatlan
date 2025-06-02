@@ -12,12 +12,26 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as VillagesVillageIdImport } from './routes/villages/$villageId'
+import { Route as DatesDateImport } from './routes/dates/$date'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const VillagesVillageIdRoute = VillagesVillageIdImport.update({
+  id: '/villages/$villageId',
+  path: '/villages/$villageId',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DatesDateRoute = DatesDateImport.update({
+  id: '/dates/$date',
+  path: '/dates/$date',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +46,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/dates/$date': {
+      id: '/dates/$date'
+      path: '/dates/$date'
+      fullPath: '/dates/$date'
+      preLoaderRoute: typeof DatesDateImport
+      parentRoute: typeof rootRoute
+    }
+    '/villages/$villageId': {
+      id: '/villages/$villageId'
+      path: '/villages/$villageId'
+      fullPath: '/villages/$villageId'
+      preLoaderRoute: typeof VillagesVillageIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dates/$date': typeof DatesDateRoute
+  '/villages/$villageId': typeof VillagesVillageIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dates/$date': typeof DatesDateRoute
+  '/villages/$villageId': typeof VillagesVillageIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/dates/$date': typeof DatesDateRoute
+  '/villages/$villageId': typeof VillagesVillageIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/dates/$date' | '/villages/$villageId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/dates/$date' | '/villages/$villageId'
+  id: '__root__' | '/' | '/dates/$date' | '/villages/$villageId'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DatesDateRoute: typeof DatesDateRoute
+  VillagesVillageIdRoute: typeof VillagesVillageIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DatesDateRoute: DatesDateRoute,
+  VillagesVillageIdRoute: VillagesVillageIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +115,19 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/dates/$date",
+        "/villages/$villageId"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/dates/$date": {
+      "filePath": "dates/$date.tsx"
+    },
+    "/villages/$villageId": {
+      "filePath": "villages/$villageId.tsx"
     }
   }
 }

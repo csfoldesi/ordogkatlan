@@ -15,10 +15,11 @@ interface SelectorProps {
   className?: string;
 }
 
-export function Selector({ items, mode = "single", selectedIds = [], onSelectionChange, className }: SelectorProps) {
-  const [internalSelected, setInternalSelected] = useState<string[]>(selectedIds);
+export function Selector({ items, mode = "single", selectedIds, onSelectionChange, className }: SelectorProps) {
+  const [internalSelected, setInternalSelected] = useState<string[]>([]);
 
-  const selected = selectedIds.length > 0 ? selectedIds : internalSelected;
+  const isControlled = selectedIds !== undefined;
+  const selected = isControlled ? selectedIds : internalSelected;
 
   const handleItemClick = (itemId: string) => {
     let newSelected: string[];
@@ -29,7 +30,9 @@ export function Selector({ items, mode = "single", selectedIds = [], onSelection
       newSelected = selected.includes(itemId) ? selected.filter((id) => id !== itemId) : [...selected, itemId];
     }
 
-    setInternalSelected(newSelected);
+    if (!isControlled) {
+      setInternalSelected(newSelected);
+    }
     onSelectionChange?.(newSelected);
   };
 
