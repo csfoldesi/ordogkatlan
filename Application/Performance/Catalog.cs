@@ -30,13 +30,18 @@ public class Catalog
         {
             var catalog = new CatalogDto();
             catalog.Villages = await _dataContext
-                .Villages.ProjectTo<VillageDto>(_mapper.ConfigurationProvider)
+                .Villages.OrderBy(v => v.Name)
+                .ProjectTo<VillageDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
             catalog.Stages = await _dataContext
-                .Stages.ProjectTo<StageDto>(_mapper.ConfigurationProvider)
+                .Stages.Include(s => s.Village)
+                .OrderBy(s => s.Village!.Name)
+                .ThenBy(s => s.Name)
+                .ProjectTo<StageDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
             catalog.Genres = await _dataContext
-                .Genres.ProjectTo<GenreDto>(_mapper.ConfigurationProvider)
+                .Genres.OrderBy(g => g.Name)
+                .ProjectTo<GenreDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
             catalog.Dates = await _dataContext
                 .Performances.Select(x => x.StartTime!.Value.Date)
