@@ -1,4 +1,5 @@
 ﻿using API.DTO;
+using API.Extensions;
 using Application.Core;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -28,13 +29,13 @@ public class BaseApiController : ControllerBase
         };
     }
 
-    /*protected ActionResult HandlePagedResult<T>(Result<PagedList<T>> result)
+    protected ActionResult HandlePagedResult<T>(Result<PagedList<T>> result)
     {
         if (result == null)
         {
             return NotFound();
         }
-        if (result.IsSuccess && result.Value != null)
+        if (result.ResultCode == ResultCode.Success && result.Value != null)
         {
             Response.AddPaginationHeader(
                 result.Value.CurrentPage,
@@ -44,10 +45,10 @@ public class BaseApiController : ControllerBase
             );
             return Ok(result.Value);
         }
-        if (result.IsSuccess && result.Value == null)
+        if (result.ResultCode == ResultCode.NotFound)
         {
             return NotFound();
         }
         return BadRequest(result.Error);
-    }*/
+    }
 }
