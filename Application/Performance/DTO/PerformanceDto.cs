@@ -10,7 +10,7 @@ public class PerformanceDto
 
     public string? Thumbnail { get; set; }
 
-    public Guid PerformanceId { get; set; }
+    public required string ProductionId { get; set; }
 
     public DateTime Date { get; set; }
 

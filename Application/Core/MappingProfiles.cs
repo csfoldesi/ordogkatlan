@@ -13,8 +13,8 @@ public class MappingProfiles : Profile
         CreateMap<Domain.Genre, GenreDto>();
 
         CreateMap<Domain.Performance, PerformanceDto>()
-            .ForMember(d => d.Id, o => o.MapFrom(s => s.ProductionId))
-            .ForMember(d => d.PerformanceId, o => o.MapFrom(s => s.Id))
+            .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+            .ForMember(d => d.ProductionId, o => o.MapFrom(s => s.ProductionId))
             .ForMember(d => d.Date, o => o.MapFrom(s => s.StartTime!.Value.Date))
             .ForMember(d => d.Title, o => o.MapFrom(s => s.Production!.Title))
             .ForMember(d => d.Description, o => o.MapFrom(s => s.Production!.Description))
