@@ -118,3 +118,72 @@
     @apply bg-background text-foreground;
   }
 }
+
+@theme {
+  --color-beremend: #007096;
+  --color-kisharsany: #68D0BD;
+  --color-mokos-szinhaz: #F1A512;
+  --color-nagyharsany: #DD4111;
+  --color-vylyan-terasz: #800080;
+}
+
+.beremend {
+  color: var(--color-beremend);
+  border-color: var(--color-beremend);
+  background-color: transparent;
+}
+
+.beremend.selected, .beremend:hover {
+  color: var(--primary-foreground);
+  border-color: var(--color-beremend);
+  background-color: var(--color-beremend);
+}
+
+.kisharsany {
+  color: var(--color-kisharsany);
+  border-color: var(--color-kisharsany);
+  background-color: transparent;
+}
+
+.kisharsany.selected, .kisharsany:hover {
+  color: var(--primary-foreground);
+  border-color: var(--color-kisharsany);
+  background-color: var(--color-kisharsany);
+}
+
+.mokos-szinhaz {
+  color: var(--color-mokos-szinhaz);
+  border-color: var(--color-mokos-szinhaz);
+  background-color: transparent;
+}
+
+.mokos-szinhaz.selected, .mokos-szinhaz:hover {
+  color: var(--primary-foreground);
+  border-color: var(--color-mokos-szinhaz);
+  background-color: var(--color-mokos-szinhaz);
+}
+
+.nagyharsany {
+  color: var(--color-nagyharsany);
+  border-color: var(--color-nagyharsany);
+  background-color: transparent;
+}
+
+.nagyharsany.selected, .nagyharsany:hover {
+  color: var(--primary-foreground);
+  border-color: var(--color-nagyharsany);
+  background-color: var(--color-nagyharsany);
+}
+
+
+.vylyan-terasz {
+  color: var(--color-vylyan-terasz);
+  border-color: var(--color-vylyan-terasz);
+  background-color: transparent;
+}
+
+.vylyan-terasz.selected, .vylyan-terasz:hover {
+  color: var(--primary-foreground);
+  border-color: var(--color-vylyan-terasz);
+  background-color: var(--color-vylyan-terasz);
+}

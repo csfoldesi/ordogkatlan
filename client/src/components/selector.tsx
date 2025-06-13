@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 interface SelectorItem {
   id: string;
   text: string;
+  styleId?: string;
 }
 
 interface SelectorProps {
@@ -37,8 +38,8 @@ export function Selector({ items, mode = "single", selectedIds, onSelectionChang
   };
 
   return (
-    <div className={cn("w-full space-y-3", className)}>
-      <div className="flex flex-wrap gap-2">
+    <div className={cn("w-full space-y-3 p-2")}>
+      <div className="flex flex-wrap gap-2 ">
         {items.map((item) => {
           const isSelected = selected.includes(item.id);
           return (
@@ -48,10 +49,12 @@ export function Selector({ items, mode = "single", selectedIds, onSelectionChang
               size="sm"
               onClick={() => handleItemClick(item.id)}
               className={cn(
-                "rounded-full px-4 py-2 border",
+                "rounded-full px-4 py-2 border-1 border-primary",
+                className,
+                item.styleId,
                 isSelected &&
-                  "bg-primary text-primary-foreground shadow-md border-primary hover:bg-primary/90 hover:text-primary-foreground",
-                !isSelected && "hover:bg-gray-50 dark:hover:bg-gray-800 border-border"
+                  "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground selected",
+                !isSelected && "hover:bg-primary hover:text-primary-foreground "
               )}>
               <span className="flex items-center gap-2">{item.text}</span>
             </Button>
