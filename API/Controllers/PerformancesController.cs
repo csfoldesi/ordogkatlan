@@ -20,7 +20,16 @@ public class PerformancesController : BaseApiController
     [HttpGet, AllowAnonymous]
     public async Task<IActionResult> List([FromQuery] PerformanceSearchRequest request)
     {
-        var result = await Mediator.Send(new List.Query { });
+        var result = await Mediator.Send(
+            new List.Query
+            {
+                Dates =
+                    request.Dates != null ? [.. request.Dates.Select(d => DateTime.Parse(d))] : [],
+                Villages = request.Villages,
+                Stages = request.Stages,
+                Genres = request.Genres,
+            }
+        );
         return HandlePagedResult(result);
     }
 }

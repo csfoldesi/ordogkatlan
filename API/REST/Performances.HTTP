@@ -1,7 +1,7 @@
 @API_HostAddress = http://localhost:5131/api/performances
 
 
-GET {{API_HostAddress}}
+GET {{API_HostAddress}}?villages=kisharsany&villages=beremend
 Accept: application/json
 
 ###

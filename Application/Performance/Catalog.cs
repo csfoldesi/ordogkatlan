@@ -30,7 +30,8 @@ public class Catalog
         {
             var catalog = new CatalogDto();
             catalog.Villages = await _dataContext
-                .Villages.OrderBy(v => v.Name)
+                .Villages.Include(v => v.Stages)
+                .OrderBy(v => v.Name)
                 .ProjectTo<VillageDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
             catalog.Stages = await _dataContext

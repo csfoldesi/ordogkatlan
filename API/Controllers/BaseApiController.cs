@@ -43,7 +43,7 @@ public class BaseApiController : ControllerBase
                 result.Value.TotalCount,
                 result.Value.TotalPages
             );
-            return Ok(result.Value);
+            return Ok(ApiResponse<PagedList<T>>.Success(result.Value));
         }
         if (result.ResultCode == ResultCode.NotFound)
         {
