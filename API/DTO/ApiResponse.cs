@@ -1,11 +1,11 @@
-﻿namespace API.DTO;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+
+namespace API.DTO;
 
 public class ApiResponse<T>
 {
     public bool IsSuccess { get; set; }
-
     public T? Data { get; set; }
-
     public string? ErrorMessage { get; set; }
 
     public static ApiResponse<T> Success(T? data) => new() { IsSuccess = true, Data = data };

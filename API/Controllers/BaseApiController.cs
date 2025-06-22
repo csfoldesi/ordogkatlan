@@ -31,7 +31,16 @@ public class BaseApiController : ControllerBase
 
     protected ActionResult HandlePagedResult<T>(Result<PagedList<T>> result)
     {
-        if (result == null)
+        return result.ResultCode switch
+        {
+            ResultCode.Success => Ok(PagedApiResponse<T>.Success(result.Value)),
+            ResultCode.NotFound => NotFound(),
+            ResultCode.Error => BadRequest(PagedApiResponse<T>.Failure(result.Error)),
+            ResultCode.Unauthorized => Unauthorized(result.Error),
+            _ => Ok(),
+        };
+
+        /*if (result == null)
         {
             return NotFound();
         }
@@ -49,6 +58,6 @@ public class BaseApiController : ControllerBase
         {
             return NotFound();
         }
-        return BadRequest(result.Error);
+        return BadRequest(result.Error);*/
     }
 }
