@@ -1,6 +1,8 @@
-﻿namespace API.DTO;
+﻿using Application.Core;
 
-public class PerformanceSearchRequest
+namespace API.DTO;
+
+public class PerformanceSearchRequest : PagedQuery
 {
     public string[]? Dates { get; set; } = [];
     public string[]? Villages { get; set; } = [];

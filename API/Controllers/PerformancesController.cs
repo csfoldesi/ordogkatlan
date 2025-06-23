@@ -28,6 +28,8 @@ public class PerformancesController : BaseApiController
                 Villages = request.Villages,
                 Stages = request.Stages,
                 Genres = request.Genres,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
             }
         );
         return HandlePagedResult(result);
