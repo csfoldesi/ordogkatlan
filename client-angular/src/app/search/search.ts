@@ -4,10 +4,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { SearchDataSource } from './search-data-source';
 import { PerformanceDataSource } from './performance-data-source';
+import { PerformanceItem } from '../performances/performance-item';
 
 @Component({
   selector: 'app-search',
-  imports: [CommonModule, MatButtonToggleModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    PerformanceItem,
+  ],
   template: `
     <section>
       <mat-button-toggle-group
@@ -55,6 +61,11 @@ import { PerformanceDataSource } from './performance-data-source';
       </mat-button-toggle-group>
       }
     </section>
+    <div className="space-y-6">
+      @for(performance of performances(); track performance.id) {
+      <app-performance-item [performance]="performance"></app-performance-item>
+      }
+    </div>
     <section>
       <button matButton (click)="loadMore()" [disabled]="!hasMorePages()">
         Next

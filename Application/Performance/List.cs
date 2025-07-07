@@ -59,7 +59,7 @@ public class List
             // TODO: add Genres filtering
 
 
-            query = query.OrderBy(p => p.Date).ThenBy(p => p.Title);
+            query = query.OrderBy(p => p.StartTime).ThenBy(p => p.Title);
 
             var result = await PagedList<PerformanceDto>.CreateAsync(
                 query,
